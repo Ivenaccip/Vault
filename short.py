@@ -1,4 +1,4 @@
-#Este código esta bien y ya corre. Puede escribir, guardar información, salir y generar nuevas pestañas
+#Este código esta bien y ya corre. Tiene Shortcuts, además de que manda un mensaje de usar el marca textos, pero aun no exta implementado el highlight
 from email import message
 from tkinter import *
 from tkinter import messagebox
