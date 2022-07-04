@@ -1,8 +1,10 @@
 X   Implementar los Highlights:
     https://www.google.com/search?q=highlightcolor+tkinter&rlz=1C1UEAD_esMX987MX987&sxsrf=ALiCzsZtKnCj7vkwZGYmsReiXAF2ZMTyUg:1655370894901&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj716WR0bH4AhV8KkQIHU4wCUIQ_AUoAnoECAEQBA&biw=1920&bih=937&dpr=1
-X   Terminar de ver el curso de Matemáticas Discretas
+Y   Terminar de ver el curso de Matemáticas Discretas
 X   Implementar el gestor de archivos en python para la Boveda
 X   Implementar Networkx con este tutorial: https://www.youtube.com/watch?v=tANVRnMaHnY
+X   Search para texto: https://pythonguides.com/python-tkinter-search-box/
+X   Autocompletado: https://pythonguides.com/python-tkinter-autocomplete/#more-15112
 X   Ver como modificar el canvas iniciarl con este repositorio y este tutorial:
     https://github.com/MagnoEfren/gui_python_tkinter/blob/main/Bloc%20de%20Notas/main.py
     https://www.youtube.com/watch?v=LPpoReqIqKQ

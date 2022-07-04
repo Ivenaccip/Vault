@@ -4,9 +4,25 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import filedialog
 
+from matplotlib.pyplot import text
+from pyparsing import col
+
 #Esta clase es para cuando iniciemos cada sesión
 class Ventana(Frame):
     def __init__(self, master):
+        """
+        This function start a window
+
+        Args:
+            - Title
+            - Geometry
+            - Protocol
+            - Position x n' y
+            - Font and Size
+
+        Return:
+            - A GUI window with 700x500+380+20 geometry with a 'Block' as a title
+        """
         #Esta es la información del block al inicio
         super().__init__(master)
         self.master.title('Block')
@@ -27,6 +43,17 @@ class Ventana(Frame):
         self.master.rowconfigure(0, weight=1)
     
     def widgets(self):
+        """
+        Menu's funtion
+
+        Args:
+            - Master Menu
+
+        Return:
+            - Shortcuts for New, Save, Open and Exit.
+            - Shortcuts for Undo, Cut, Copy, Paste, Delete and Markdown
+            - 
+        """
         menu = Menu(self.master)
         self.master.configure(menu = menu)
 
@@ -63,16 +90,63 @@ class Ventana(Frame):
         ladoy.grid(column = 1, row = 0, sticky='ns')
         self.texto.configure(xscrollcommand = ladox.set, yscrollcommand = ladoy.set)
         self.barra_estado = Label(self.master, font = ('Segoe UI Symbol', 10))
+
+    def nameTag(self, Vault, text):
+        TagVault = StringVar()
+        TagVault = Vault.get()
+
+        print(type(TagVault))
+        text.tag_add(str(TagVault), "1.0", "1.4")
+        text.tag_config(str(TagVault), background = "yellow", foreground = "black")
+        ventana.mainloop()
         
+    #Error, el self no fue registrado dentro de la actividad de la función
+    #Error dado: Ventana.nameTag() takes 3 positional arguments but 4 were given
+    #Descripción, no aparece el botón
     def marcar(self):
-        valor = messagebox.askyesno('Marcar Text', '¿Quieres subrayar este text?', parent=self.master)
-        if valor == True:
-            pass
-        else:
-            pass
+        """
+        Message Box for Marckdown
+
+        Args:
+            - Listener for marckdown
+
+        Return:
+            - Message box
+        """
+        #valor = messagebox.askyesno('Marcar Text', '¿Quieres subrayar este text?', parent=self.master)
+        #if valor == True:
+        #    pass
+        #else:
+        #    pass
+        ventana_tag = Tk()
+        text = Text(ventana)
+        ventana_tag.title("Nombre Boveda")
+
+        marcarFrame = Frame(ventana_tag)
+        marcarFrame.grid()
+
+        Label(marcarFrame, text="¿Cómo se llama esta boveda?", fg = "black", font = ("Arial", 12)).grid(row = 0, column=0, sticky="w", padx=5, pady=1)
+        
+        Vault = StringVar()
+        nameVault = Entry(marcarFrame, textvariable=Vault)
+        nameVault.grid(row = 3, column=0, sticky='nsew', padx=10, pady=1)
+
+        botonEnviar = Button(marcarFrame, text="Nombrar boveda", fg = "black", command=self.nameTag(self, Vault, text))
+        botonEnviar.grid(row = 4, column=0, padx=5, pady=10)
+
+        ventana_tag.master.quit()
 
 
     def guardar_archivo(self):
+        """
+        Message Box for Save Document
+
+        Args:
+            - Listener for save Document
+
+        Return:
+            - Message box
+        """
         try:
             filename = filedialog.asksaveasfilename(default = '.txt')
             archivo =open(filename, 'w')
@@ -84,6 +158,15 @@ class Ventana(Frame):
             messagebox.showinfo('Guardar Archivo', 'Archivo no Guardado \n Error')
 
     def abrir_archivo(self):
+        """
+        Message Box for Open Document
+
+        Args:
+            - Listener for Open Document
+
+        Return:
+            - Message box
+        """
         direccion = filedialog.askopenfilename(initialdir='/',
         title = 'Archivo',
         filetype = (('txt files','*.txt*'),('All files', '*.*'))
@@ -97,6 +180,15 @@ class Ventana(Frame):
 
 
     def nueva_ventana(self):
+        """
+        Message Box for New Window
+
+        Args:
+            - Listener for new window
+
+        Return:
+            - Message box
+        """
         if self.texto.get != '':
             valor = messagebox.askyesno('Guardar', '¿Quieres Guardar?', parent = self.master)
             if valor == True:
@@ -105,6 +197,15 @@ class Ventana(Frame):
                 self.texto.delete('1.0', 'end')
 
     def salir(self):
+        """
+        Message Box for Exit
+
+        Args:
+            - Listener for exit
+
+        Return:
+            - Message box
+        """
         valor = messagebox.askyesno('Salir', '¿Deseas Salir?', parent = self.master)
         if valor == True:
             self.master.destroy()
